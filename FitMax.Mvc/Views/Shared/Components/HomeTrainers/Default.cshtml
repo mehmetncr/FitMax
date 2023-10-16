@@ -1,0 +1,39 @@
+﻿@model List<HomeTrainerViewModel>
+<section class="s-out-trainer" style="background-image: url(~/fitmax/assets/img/bg-contacts.svg); margin-top:-130px">
+    <div class="container">
+        <h2 class="title-decor"><span>Eğitmenlerimiz</span></h2>
+        <p class="slogan">Eğitmenli Derslerimizle Sağlıklı Yaşamın Kapılarını Aralayın, Kendiniz İçin En İyiyi Seçin!</p>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 out-trainer-col">
+                    <div class="out-trainer-item">
+                        <a asp-action="Index" asp-controller="TrainerPage" asp-route-id="@item.Id" class="out-trainer-img"><img  src="@item.ImgUrl" alt="img"></a>
+                        <div class="out-trainer-info">
+                            <h3><a asp-action="Index" asp-controller="TrainerPage" asp-route-id="@item.Id" class="mb-5">@item.Name</a></h3>
+                          
+                            <p>@item.Description</p>
+                            <ul class="social-list">
+                                <li>
+                                    <a target="_blank" href="@item.Facebook">
+                                        <i class="@((item.Facebook == null) ? "" : "fa fa-facebook")" aria-hidden="true"></i>
+
+                                    </a>
+                                </li>
+                                <li><a target="_blank" href="@item.Twitter"><i class="@((item.Twitter == null) ? "" : "fa fa-twitter")" aria-hidden="true"></i></a></li>
+                                <li><a target="_blank" href="@item.Youtube"><i class="@((item.Youtube == null) ? "" : "fa fa-youtube")" aria-hidden="true"></i></a></li>
+                                <li><a target="_blank" href="@item.Instagram"><i class="@((item.Instagram == null) ? "" : "fa fa-instagram")" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="btn-form-cover mt-5">
+
+            <a asp-action="Trainers" asp-controller="Home" class="btn">Tüm Eğitmenler</a>
+        </div>
+    </div>
+
+</section>

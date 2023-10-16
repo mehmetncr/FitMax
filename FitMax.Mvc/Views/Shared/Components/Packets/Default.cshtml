@@ -1,0 +1,36 @@
+﻿@model IEnumerable<PackageViewModel>
+
+
+
+
+
+
+<section class="s-club-cards" style="margin-top:-250px">
+    <div class="container">
+        <h2 class="title-decor">Klüp <span>Kartı</span></h2>
+        <p class="slogan">Spor, vücudumuzun en iyi versiyonunu ortaya çıkarmamıza yardımcı olan bir anahtardır. Düzenli spor yapmak, kaslarımızı güçlendirmenin yanı sıra dayanıklılığımızı artırır ve kardiyovasküler sağlığımızı destekler. Bunun sonucunda, enerjik ve canlı hissederiz.</p>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+
+
+                <div class="col-md-4 club-card-col">
+                    <div class="club-card-item" style="background-image: url(assets/img/bg-price-1.svg);">
+                        <div class="price-cover">
+                            <div class="price">@item.Price.ToString("C0")</div>
+                            <div class="date"><span>00</span>@item.Name</div>
+                        </div>
+                        <ul class="list">
+                            <li>@item.Description</li>
+                            <li>@item.Description2</li>
+                            <li>@item.Description3</li>
+                      
+                        </ul>
+                        <a asp-action="Payment" asp-controller="Cart" asp-route-id="@item.Id" class="btn">Satın Al</a>
+                    </div>
+                </div>
+            }
+          
+        </div>
+    </div>
+</section>

@@ -1,0 +1,73 @@
+﻿@model PrivateLessonViewModel
+@{
+    ViewData["Title"] = "LessonDescription";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h1> </h1>
+<div>
+    <form method="post" asp-action="LessonDescription" asp-controller="UserPage" enctype="multipart/form-data">
+
+        <input asp-for="Id" value="@Model.Id" type="hidden" />
+
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-12 col-lg-12 ">
+                    <div class="btn-form-cover">
+
+                        <a asp-controller="UserPage" asp-action="StudentOrTrainer" asp-route-userName="@User.Identity.Name" class="btn">Geri</a>
+                    </div>
+
+                    <div class="">
+                        <div class="training-schedule-table">
+                            <h4 class="card-title">@Model.Lesson</h4>
+                            <div class="table-responsive">
+
+                                <table class="table">
+
+                                    <tbody>
+                                        <tr>
+                                            <td>Dersin Tarihi</td>
+                                            <td>@Model.Date</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12  ">
+                    <div class="">
+                        <div class="training-schedule-table">
+                            <h4 class="card-title">Dersin Açıklaması</h4>
+                            <div class="table-responsive">
+
+                                <table class="table">
+
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <input asp-for="Description" value="@Model.Description" type="text" class="form-control" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <button class="btn" type="submit">Güncelle</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>

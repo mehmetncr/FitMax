@@ -1,0 +1,283 @@
+﻿@model UserViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<section class="s-news">
+    <div class="container">
+        <div class="row">
+            <div class="col-6 col-lg-6 ">
+                <div class="post-item-cover">
+                    <div class="post-header">
+                        <div>
+                            <img src="@Model.ImgUrl">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-lg-6 ">
+                <h1 class="title">@Model.FirstName @Model.Lastname</h1>
+
+                <h1>Bilgileri Güncelleme</h1>
+                <form method="post" asp-action="UpdateUserInfo" asp-controller="UserPage" enctype="multipart/form-data">
+                    <input asp-for="Id" value="@Model.Id" type="hidden" />
+                    <input asp-for="UserName" value="@User.Identity.Name" type="hidden" />
+                    <input asp-for="ImgUrl" value="@Model.ImgUrl" type="hidden" />
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>
+
+                                    <input asp-for="Description" id="description" type="text" class="form-control" placeholder="Hakkınızda Açıklama Giriniz" value="@Model.Description" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label for="facebook"><a target="_blank" href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></label>
+                                    <input asp-for="Facebook" id="facebook" type="text" class="form-control" placeholder="Facebook Adresinizi Giriniz" value="@Model.Facebook" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="twitter"><a target="_blank" href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></label>
+                                    <input asp-for="Twitter" id="twitter" type="text" class="form-control" placeholder="Twitter Adresinizi Giriniz" value="@Model.Twitter" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="youtube"><a target="_blank" href=""><i class="fa fa-youtube" aria-hidden="true"></i></a></label>
+                                    <input asp-for="Youtube" id="youtube" type="text" class="form-control" placeholder="Youtube Adresinizi Giriniz" value="@Model.Youtube" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="instagram"><a target="_blank" href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></label>
+                                    <input asp-for="Instagram" id="instagram" type="text" class="form-control" placeholder="Instagram Adresinizi Giriniz" value="@Model.Instagram" />
+                                </td>
+                            </tr>
+
+                        <td>
+                            <input asp-for="ImgUrl" class="form-control" type="file" name="formFile" id="" class="form-control" style="margin: 15px" value="@Model.ImgUrl" />
+                        </td>
+
+                        <tr>
+                            <td>
+                                <button class="btn" type="submit">Güncelle</button>
+                               
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-7 col-lg-7 ">
+
+
+                <div class="col-lg-12  ">
+                    <div class="">
+                        <div class="card-body">
+                            <div class="mb-2" style="text-align:center!important; background-color:gray">
+                                <h4 class="card-title">Teslim Edilmeyen Siparişler</h4>
+                            </div>
+                            <div class="table-responsive" style="overflow-y: auto; max-height: 300px;">
+                                <table class="training-schedule-table">
+                                    <thead>
+
+                                        <tr>
+
+                                            <th> Sipariş Tarihi </th>
+
+                                            <th> Tutar </th>
+                                            <th> Detaylar </th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        @foreach (var item in ViewBag.deliveryFalse)
+                                        {
+                                            <tr>
+                                                <td> @item.OrderDate </td>
+                                                <td> @item.TotalPrice.ToString("C") </td>
+                                                <td>
+                                                    @if (!item.Status)
+                                                    {
+                                                        <a class="btn btn-success" asp-controller="UserPage" asp-action="UserCartLines" asp-route-id="@item.Id">Detay</a>
+                                                    }
+                                                </td>
+                                            </tr>
+
+                                        }
+
+                                    </tbody>
+
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="">
+                        <div class="card-body">
+                            <div class="mb-2" style="text-align:center!important;background-color:gray">
+                                <h4 class="card-title">Teslim Edilen Siparişler</h4>
+                            </div>
+                            <div class="table-responsive" style="overflow-y: auto; max-height: 300px;">
+                                <table class="training-schedule-table">
+                                    <thead>
+                                        <tr>
+
+
+                                            <th> Sipariş Tarihi </th>
+                                            <th> Teslim Tarihi </th>
+                                            <th> Tutar </th>
+                                            <th> Detaylar </th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in ViewBag.deliveryTrue)
+                                        {
+
+                                            <tr>
+
+                                                <td> @item.OrderDate </td>
+                                                <td> @item.DeliveryDate </td>
+                                                <td> @item.TotalPrice.ToString("C") </td>
+
+                                                <td>
+
+                                                    <a class="btn btn-success" asp-controller="UserPage" asp-action="UserCartLines" asp-route-id="@item.Id">Detay</a>
+
+                                                </td>
+
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-5 col-lg-5 ">
+                <div class="row">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="">
+                            <div class="card-body">
+                                <div class="mb-2" style="text-align:center!important;background-color:gray">
+                                    <h4 class="card-title">Gelecek Özel Dersler</h4>
+                                </div>
+                                <div class="table-responsive" style="overflow-y: auto; max-height: 300px;">
+                                    <table class="training-schedule-table">
+                                        <thead>
+                                            <tr>
+
+
+                                                <th> Ders Tarihi </th>
+                                                <th> Eğitmen </th>
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in ViewBag.lessonTrue)
+                                            {
+                                                <tr>
+                                                    <td> @item.Date </td>
+                                                    @if (item.Lesson != "empty" && item.Lesson != "cancel")
+                                                    {
+
+
+                                                        <td><a asp-controller="UserPage" asp-action="LessonDescription" asp-route-id="@item.Id" class="btn btn-dark"> @item.Lesson</a> </td>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>@(item.Lesson == "empty" ? "Boş" : "")@(item.Lesson == "cancel" ? "İptal" : "")</td>
+                                                    }
+                                                </tr>
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!---->
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="">
+                            <div class="card-body">
+                                <div class="mb-2" style="text-align:center!important;background-color:gray">
+                                    <h4 class="card-title">Geçmiş Özel Dersler</h4>
+                                </div>
+                                <div class="table-responsive" style="overflow-y: auto; max-height: 300px;">
+                                    <table class="training-schedule-table">
+                                        <thead>
+                                            <tr>
+
+
+                                                <th> Ders Tarihi </th>
+                                                <th> Eğitmen </th>
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in ViewBag.lessonFalse)
+                                            {
+                                                <tr>
+                                                    <td> @item.Date </td>
+                                                    @if (item.Lesson != "empty" && item.Lesson != "cancel")
+                                                    {
+
+
+                                                        <td><a asp-controller="UserPage" asp-action="LessonDescription" asp-route-id="@item.Id" class="btn btn-dark"> @item.Lesson</a> </td>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>@(item.Lesson == "empty" ? "Boş" : "")@(item.Lesson == "cancel" ? "İptal" : "")</td>
+                                                    }
+                                                </tr>
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+ 
+        <div class="btn-form-cover">
+
+            <a asp-controller="Account" asp-action="PasswordNewNormal" class="btn">Şifre Değiştir</a>
+        </div>
+    </div>
+ 
+</section>
+<!--=================== S-NEWS END ===================-->

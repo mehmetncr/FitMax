@@ -1,0 +1,20 @@
+﻿@model List<ProductViewModel>
+<div class="row" id="Products">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3">
+            <div class="card mb-4" style="border: 1px solid #f23849; border-bottom-left-radius:20px; border-bottom-right-radius:20px; box-shadow: 5px 5px 10px rgba(240, 240, 240, 0.2);">
+                <img src="@item.ImgUrl" class="card-img-top" alt="...">
+                <div class="card-body text-center" style="text-align:center">
+                    <h5 class="card-title my-2">@item.Name</h5>
+                    <h5 class="card-title my-2">@item.Price.ToString("C")</h5>
+
+
+                    <div style="text-align:center!important">
+                        <a href="" onclick="addCart(@item.Id);return false;" class="btn btn-primary mb-2" style=" box-shadow: 5px 8px 30px rgba(240, 240, 240, 0.2);">Ekle</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,73 @@
+﻿@model BankCartViewModel
+@{
+    ViewData["Title"] = "AddMoney";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h1 class="title-decor">Cüzdana Bakiye <span> Yükle</span></h1>
+
+
+<div class="container row">
+
+
+    <div class="col-md-6 ms-6" >
+        <img src="~/images/pay.png"
+             alt="Shoes" style="width:350px;border-radius:50px" />
+    </div>
+    <div class="col-md-6">
+        <form asp-controller="Wallet" asp-action="AddMoney" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+              <input asp-for="Id" type="hidden" value="@Model.Id" />
+            <h2>Kart Bilgileri</h2>
+            <p class="p">İsim Soyisim</p>
+            <input asp-for="Name"  type="text" required />
+            <span asp-validation-for="Name" class="text-danger"></span>
+            <p class="p">Kart Numarası</p>
+            <input asp-for="CartNo" type="text"  required />
+            <span asp-validation-for="CartNo" class="text-danger"></span>
+
+
+            <div class="row">
+                <div class="col-6">
+                    <p>Ay</p>
+                    <input asp-for="Month" type="text" required />
+                    <span asp-validation-for="Month" class="text-danger"></span>
+                </div>
+                <div class="col-6">
+                    <p>Yıl</p>
+                    <input asp-for="Year" type="text" s required />
+                    <span asp-validation-for="Year" class="text-danger"></span>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <p>CVV</p>
+                    <input asp-for="CVV" type="password" required />
+                    <span asp-validation-for="CVV" class="text-danger"></span>
+                </div>
+                <div class="col-6">
+                    <p>Miktar</p>
+                    <input asp-for="Amount" type="text" required />
+                    <span asp-validation-for="Amount" class="text-danger"></span>
+                </div>
+               
+
+
+            </div>
+
+            <div class="btn-form-cover mt-4">
+                <button type="submit" class="btn">Tamam</button>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

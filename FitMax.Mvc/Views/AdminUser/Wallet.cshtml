@@ -1,0 +1,42 @@
+﻿@model IEnumerable<WalletDetailViewModel>
+@{
+    ViewData["Title"] = "Wallet";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Toplam Bakiye</h4>
+            <h4 class="card-title">@ViewBag.balance.Balance.ToString("C")</h4>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Tarih</th>
+                            <th>İşlem Tipi</th>
+                            <th>Tutar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+
+
+                            <tr>
+                                <td>@item.ActivityDate.ToString("dd-MMM-yyyy")</td>
+                                <td>@item.ActivityType</td>
+
+                                <td class="product-total">@item.Amount.ToString("C")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

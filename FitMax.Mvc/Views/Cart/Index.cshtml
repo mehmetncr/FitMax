@@ -1,0 +1,77 @@
+﻿@model List<CartLineViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+<partial name="_CartPartialView" model="@Model">
+
+    @section Scripts{
+
+        <script>
+
+            function increase(id) {
+              
+                $.ajax({
+                    // type: 'GET',  //default get olduğu için belirtmeden de çalışır
+                    url: '/Cart/IncreaseProduct/' + id,
+                    success: function (result) {
+                        $("#Tablo").load("/Cart/UpdatedCart")
+
+                    },
+                    error: function (xhr, status, error) {
+
+                        console.error(error);
+                    }
+                });
+            };
+
+            function decrease(id) {
+                $.ajax({
+                    //type: 'GET',
+                    url: '/Cart/DecreaseProduct/' + id,
+                    success: function (result) {
+                        $("#Tablo").load("/Cart/UpdatedCart")
+                    },
+                    error: function (xhr, status, error) {
+
+                        console.error(error);
+                    }
+                });
+            };
+
+            function deleteto(id) {
+                $.ajax({
+                    //type: 'GET',
+                    url: '/Cart/DeleteFromCart/' + id,
+                    success: function (result) {
+                        $("#Tablo").load("/Cart/UpdatedCart")
+                        $("#count").html(result);
+
+                    },
+                    error: function (xhr, status, error) {
+
+                        console.error(error);
+                    }
+                });
+            };
+
+            function deletecart() {
+                $.ajax({
+                    //type: 'GET',
+                    url: '/Cart/DeleteCart/',
+                    success: function (result) {
+                        $("#Tablo").load("/Cart/UpdatedCart")
+                        $("#count").html(0);
+                    },
+                    error: function (xhr, status, error) {
+
+                        console.error(error);
+                    }
+                });
+            };
+        </script>
+
+    }
+

@@ -1,0 +1,61 @@
+﻿@model ProductViewModel
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+
+
+                <form asp-action="Details" asp-controller="AdminProduct" method="post" enctype="multipart/form-data" class="forms-sample">
+                    <input asp-for="ImgUrl" type="hidden" value="@Model.ImgUrl">
+                    <div class="form-group">
+                        <label>Adı</label>
+                        <input asp-for="Name" value="@Model.Name" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Kategori</label>
+                        <input asp-for="ProductType" value="@Model.ProductType" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Açıklama</label>
+                        <input asp-for="Description" value="@Model.Description" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Alış Fiyatı</label>
+                        <input asp-for="Purchaseprice" value="@Model.Purchaseprice" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Satış Fiyatı</label>
+                        <input asp-for="Price" value="@Model.Price" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Durumu</label>
+                        <input asp-for="Status" value="@Model.Status" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Stok</label>
+                        <input asp-for="Stock" value="@Model.Status" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Resim</label>
+                        <input asp-for="ImgUrl" model="@Model.ImgUrl" class="form-control" type="file" name="formFile" /><br />
+                        <img src="@Model.ImgUrl" width="200px" />
+
+                    </div>
+
+                    <button id="#submit" type="submit" class="btn btn-primary mr-2">Kaydet</button>
+                    <a href="/AdminProduct/Index" class="btn btn-dark">İptal</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+

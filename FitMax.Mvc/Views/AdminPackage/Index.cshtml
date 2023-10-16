@@ -1,0 +1,42 @@
+﻿@model IEnumerable<PackageViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Salon Üyelik Paketleri</h4>
+            <a asp-action="NewPackage" asp-controller="AdminPackage"  class="btn btn-success">Yeni Paket Tanımla</a>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th> Adı </th>
+                            <th> Fiyatı </th>
+                            <th> İşlemler </th>
+                       
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+
+                            <tr>
+
+                                <td>@item.Name</td>
+                                <td> @item.Price.ToString("C") </td>
+                                <td> <a asp-action="Details" asp-controller="AdminPackage" asp-route-id="@item.Id" class="btn btn-outline-success">Düzenle</a> </td>
+                                <td> <a asp-action="DeletePackage" asp-controller="AdminPackage" asp-route-id="@item.Id" class="btn btn-outline-danger">Sil</a> </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

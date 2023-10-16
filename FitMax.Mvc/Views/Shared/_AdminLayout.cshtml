@@ -1,0 +1,199 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Corona Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="~/Admin/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="~/Admin/assets/vendors/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/owl-carousel-2/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/owl-carousel-2/owl.theme.default.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="~/Admin/assets/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="~/Admin/assets/images/favicon.png" />
+</head>
+<body>
+    <div class="container-scroller">
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+                <a class="sidebar-brand brand-logo" style="text-decoration:none" href="/AdminHome/Index">FitMax</a>
+                <a class="sidebar-brand brand-logo-mini" style="text-decoration:none" href="/AdminHome/Index">Fit</a>
+            </div>
+            <ul class="nav">
+                <li class="nav-item profile">
+                    <div class="profile-desc">
+                        <div class="profile-pic">
+                            <div class="count-indicator">
+                                <i class="mdi mdi-account-card-details text-warning"></i>
+                                <span class="count bg-success"></span>
+                            </div>
+                            <div class="profile-name">
+                                <h5 class="mb-0 font-weight-normal">@User.Identity.Name</h5>
+
+                            </div>
+                        </div>
+                        <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
+
+                            <div class="dropdown-divider"></div>
+                            <a href="/Home/Index" class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-dark rounded-circle">
+                                        <i class="mdi mdi-arrange-send-backward text-info"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject ellipsis mb-1 text-small">Siteye Git</p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a asp-action="LogOut" asp-controller="Account" class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-dark rounded-circle">
+                                        <i class="mdi mdi-exit-to-app text-success"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject ellipsis mb-1 text-small">Oturumu Kapat</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item nav-category">
+                    <span class="nav-link">Menü</span>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" asp-controller="AdminHome" asp-action="Index">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-speedometer"></i>
+                        </span>
+                        <span class="menu-title">Anasafya</span>
+                    </a>
+                </li>
+               
+                <li class="nav-item menu-items">
+                    <a class="nav-link" asp-controller="Trainer" asp-action="Index">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-owl"></i>
+                        </span>
+                        <span class="menu-title">Eğitmenler</span>
+                    </a>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" asp-controller="AdminUser" asp-action="Index">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-account-multiple-outline"></i>
+                        </span>
+                        <span class="menu-title">Üyeler</span>
+                    </a>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" asp-controller="AdminProduct" asp-action="Index">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-credit-card-scan"></i>
+                        </span>
+                        <span class="menu-title">Ürünler</span>
+                    </a>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" asp-action="Delivery" asp-controller="AdminProduct">
+                        <span class="menu-icon">
+                            <i class="mdi  mdi-arrow-up-bold-hexagon-outline"></i>
+                        </span>
+                        <span class="menu-title">Siparişler</span>
+                    </a>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" asp-action="Index" asp-controller="AdminPackage">
+                        <span class="menu-icon">
+                            <i class=" mdi mdi-dumbbell"></i>
+                        </span>
+                        <span class="menu-title">Salon Paketleri</span>
+                    </a>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" asp-action="Index" asp-controller="AdminRole">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-lock-open-outline"></i>
+                        </span>
+                        <span class="menu-title">Yetkiler</span>
+                    </a>
+                </li>
+           
+               
+               
+            </ul>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_navbar.html -->
+            <nav class="navbar p-0 fixed-top d-flex flex-row">
+                <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
+                    <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
+                </div>
+                <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
+                    <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                        <span class="mdi mdi-menu"></span>
+                    </button>
+                   
+                    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                        <span class="mdi mdi-format-line-spacing"></span>
+                    </button>
+                </div>
+            </nav>
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    @RenderBody()
+        
+                </div>
+            </div>
+            <!-- main-panel ends -->
+            <!-- partial:partials/_footer.html -->
+           
+            <!-- partial -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="~/Admin/assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="~/Admin/assets/vendors/chart.js/Chart.min.js"></script>
+    <script src="~/Admin/assets/vendors/progressbar.js/progressbar.min.js"></script>
+    <script src="~/Admin/assets/vendors/jvectormap/jquery-jvectormap.min.js"></script>
+    <script src="~/Admin/assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="~/Admin/assets/vendors/owl-carousel-2/owl.carousel.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="~/Admin/assets/js/off-canvas.js"></script>
+    <script src="~/Admin/assets/js/hoverable-collapse.js"></script>
+    <script src="~/Admin/assets/js/misc.js"></script>
+    <script src="~/Admin/assets/js/settings.js"></script>
+    <script src="~/Admin/assets/js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="~/Admin/assets/js/dashboard.js"></script>
+    <!-- End custom js for this page -->
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+

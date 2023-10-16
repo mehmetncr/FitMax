@@ -1,0 +1,48 @@
+﻿@model List<UserViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Üyeler</h4>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th> Adı </th>
+                            <th> Üyelik Tarihi </th>
+                            <th> Salon Üyeliği Başlama </th>
+                            <th> Salon Üyeliği Bitiş </th>
+                            <th> Deadline </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+
+
+                            <tr>
+                                <td>@item.FirstName @item.Lastname</td>
+                                <td>@item.CreateDate.ToString("dd-MMM-yyyy")</td>
+                                <td>@item.PackageStartDate</td>
+                                <td>@item.PackageEndDate</td>
+                                <td>@(item.Status==true?"Aktif":"Pasif")</td>
+                                <td><a class="btn btn-outline-success " asp-action="Wallet" asp-controller="AdminUser" asp-route-id="@item.Id">Cüzdan</a></td>
+                                <td><a class="btn btn-outline-warning" asp-action="RemoveSub" asp-controller="AdminUser" asp-route-id="@item.Id">Abonelik İptali</a></td>
+                                <td><a class="btn btn-outline-danger" asp-action="DeleteUser" asp-controller="AdminUser" asp-route-id="@item.Id">Sil</a></td>
+                                <td><a class="btn btn-outline-info" asp-action="AddTrainer" asp-controller="AdminUser" asp-route-id="@item.Id">Eğitmen</a></td>
+               
+                               
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

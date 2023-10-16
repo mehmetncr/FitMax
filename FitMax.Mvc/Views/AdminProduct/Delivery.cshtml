@@ -1,0 +1,91 @@
+﻿@model DeliveryListViewModel
+@{
+    ViewData["Title"] = "Delivery";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Teslim Edilmeyen Siparişler</h4>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th> Muşteri </th>
+                            <th> Email </th>
+                            <th> Sipariş Tarihi </th>
+                            <th> Teslim Tarihi </th>                            
+                            <th> Tutar </th>
+                            <th> Durumu </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.IsFalse)
+                        {
+
+                            <tr>
+
+                                <td> @item.CustomerName</td>
+                                <td> @item.CustomerEmail</td>
+                                <td> @item.OrderDate </td>
+                                <td> @item.DeliveryDate </td>
+                                <td> @item.TotalPrice.ToString("C") </td>
+                                <td> <a class="btn btn-outline-danger">Teslim Edlimedi</a> </td>
+                                <td>
+                                    @if (item.Status == false)
+                                    {
+                                        <a class="btn btn-success"  asp-controller="AdminProduct" asp-action="DeliveryDetail" asp-route-id="@item.Id">Teslimat</a>
+                                    }
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Teslim Edilen Siparişler</h4>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th> Muşteri </th>
+                            <th> Email </th>
+                            <th> Sipariş Tarihi </th>
+                            <th> Teslim Tarihi </th>                           
+                            <th> Tutar </th>
+                            <th> Durumu </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.IsTrue)
+                        {
+
+                            <tr>
+                                <td> @item.CustomerName</td>
+                                <td> @item.CustomerEmail</td>
+                                <td> @item.OrderDate </td>
+                                <td> @item.DeliveryDate </td>
+                                <td> @item.TotalPrice.ToString("C") </td>
+                                <td> <a class="btn btn-outline-success">Teslim Edildi</a> </td>
+                                <td>
+                                    
+                                        <a class="btn btn-success" asp-controller="AdminProduct" asp-action="DeliveryDetail" asp-route-id="@item.Id">Detaylar</a>
+                                    
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,106 @@
+﻿@model ContactViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+
+<!-- =============== HEADER-TITLE =============== -->
+<section class="s-header-title" style="background-image: url(/fitmax/assets/img/bg-1-min.png);">
+    <div class="container">
+        <h1 class="title">İLETİŞİM</h1>
+
+    </div>
+</section>
+<!-- ============= HEADER-TITLE END ============= -->
+<!-- ================== S-MAP ================== -->
+<section class="s-map">
+    <div id="map" class="cont-map google-map">
+        <div class="mapouter">
+            <div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=818&amp;height=400&amp;hl=en&amp;q=istanbul&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://connectionsgame.org/">Connections Unlimited</a></div><style>
+                         </style>
+        </div>
+    </div>
+</section>
+<!-- ================ S-MAP END ================ -->
+<!-- ================ S-CONTACTS ================ -->
+<section class="s-contacts" style="background-image: url(assets/img/bg-contacts.svg);">
+    <div class="container">
+        <h2 class="title-decor">İletişime <span>Geçin</span></h2>
+        <p class="slogan">Maecenas consequat ex id lobortis venenatis. Mauris id erat enim. Morbi dolor dolor, auctor tincidunt lorem ut, venenatis dapibus miq.</p>
+        <div class="row">
+            <div class="col-md-5 col-lg-4">
+                <div class="contact-item">
+                    <div class="contact-item-left">
+                        <img src="~/fitmax/assets/img/icon-1.svg" alt="img">
+                        <h4>YARDIM</h4>
+                    </div>
+                    <div class="contact-item-right">
+                        <ul class="contact-item-list">
+                            <li><a href="tel:18004886040">1-800-488-6040</a></li>
+                            <li><a href="tel:18005784090">1-800-578-4090</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-left">
+                        <img src="~/fitmax/assets/img/icon-2.svg" alt="img">
+                        <h4>SORUN</h4>
+                    </div>
+                    <div class="contact-item-right">
+                        <ul class="contact-item-list">
+                            <li><a href="mailto:team@gmail.com">team@gmail.com</a></li>
+                            <li><a href="mailto:help@gmail.com">help@gmail.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-left">
+                        <img src="~/fitmax/assets/img/icon-3.svg" alt="img">
+                        <h4>ADRES</h4>
+                    </div>
+                    <div class="contact-item-right">
+                        <ul class="contact-item-list">
+                            <li>İSTANBUL - TÜRKİYE</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7 col-lg-8">
+                <form asp-action="Index" asp-controller="Contact" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <ul class="form-cover">
+                        <li class="inp-name">
+                            <label>İsim *</label>
+                            <input  type="text" asp-for="Name">
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </li>
+                        <li class="inp-email">
+                            <label>E-mail *</label>
+                            <input  type="email"asp-for="Email">
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </li>
+                        <li class="inp-text">
+                            <label>Mesaj *</label>
+                            <textarea  asp-for="Content"></textarea>
+                            <span asp-validation-for="Content" class="text-danger"></span>
+                        </li>
+                    </ul>
+                    <div class="btn-form-cover">
+                        <button id="#submit" type="submit" class="btn">GÖNDER</button>
+                    </div>
+                </form>
+                <div ></div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ============== S-CONTACTS-E@section Scripts {
+
+}ND ============== -->
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,55 @@
+﻿@model List<PrivateLessonViewModel>
+@{
+    ViewData["Title"] = "LessonDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@if (Model.Count() == 0)
+{
+    <h2>Ders kaydı bulunamadı</h2>
+}
+else
+{
+
+
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">@Model.FirstOrDefault().TrainerName</h4>
+
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th >Fiyat</th>
+                                <th >Tarih</th>
+                                <th >Durumu</th>
+                                <th >açıklama</th>
+                   
+                    
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+
+                                <tr>
+
+                                    <td> @item.TrainerPrice.ToString("C")</td>
+                                    <td> @item.Date.ToLongDateString()</td>
+                                    <td> @item.Lesson</td>
+                                    <td> @item.Description</td>
+
+
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

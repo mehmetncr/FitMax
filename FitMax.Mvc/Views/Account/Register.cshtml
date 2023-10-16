@@ -1,0 +1,98 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<section class="s-contacts" style="background-image: url(assets/img/bg-contacts.svg);  margin-top:-100px!important">
+    <div class="container">
+        <h2 class="title-decor">Üye <span>Ol</span></h2>
+        <div class="row">
+            <div class="col-md-3 col-lg-3">
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <form asp-action="Register" asp-controller="Account" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <ul class="form-cover">
+
+                        <li class="inp-name">
+                            <label asp-for="FirstName" class="control-label"></label>
+                            <input asp-for="FirstName" class="form-control" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </li>
+                        <li class="inp-email">
+                            <label asp-for="LastName" class="control-label"></label>
+                            <input asp-for="LastName" class="form-control" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </li>
+                        <li class="inp-name">
+                            <label asp-for="UserName" class="control-label"></label>
+                            <input asp-for="UserName" class="form-control" />
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </li>
+                        <li class="inp-email">
+                            <label asp-for="PhoneNumber" class="control-label"></label>
+                            <input asp-for="PhoneNumber" class="form-control" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </li>
+                        <li class="inp-name">
+                            <label asp-for="Email" class="control-label"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </li>
+                        <li class="inp-name">
+                            <label asp-for="Password" class="control-label"></label>
+                            <input asp-for="Password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </li>
+                        <li class="inp-name">
+                            <label asp-for="ConfirmPassword" class="control-label"></label>
+                            <input asp-for="ConfirmPassword" class="form-control" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </li>
+
+                    </ul>
+                    <div class="checkbox-wrap">
+                        <div class="checkbox-cover">
+                            <input asp-for="DataComfirm" type="checkbox" id="dataConfirmCheckbox">
+                            <p> Şartları Kabul </p>
+                            <span asp-validation-for="DataComfirm" class="text-danger"></span>
+                        </div>
+                        <a onclick="valid()">Ediyorum</a>
+                    </div>
+                   
+                    <div class="btn-form-cover">
+                        <button id="#submit" type="submit" class="btn">Kayıt Ol</button>
+                    </div>
+                </form>
+                <div id="message"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function valid() {
+            Swal.fire({
+                title: 'Kişisel Verilerin Korunması Kanunu (KVKK)!',
+                text: ' Aydınlatma Metni Kişisel verileriniz, FitMax tarafından belirli amaçlar doğrultusunda işlenmektedir.KVKK uyarınca kişisel verilerinizin işlenme amaçları ve haklarınız hakkında daha fazla bilgi almak için FitMax adresini ziyaret edebilirsiniz.',
+            
+            })
+        }
+    </script>
+
+
+
+
+
+    @{
+
+
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+
+    }
+}

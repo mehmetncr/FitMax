@@ -1,0 +1,37 @@
+﻿@model IEnumerable<WalletDetailViewModel>
+
+<div class="club-card-item" style="background-image: url(/fitmax/assets/img/bg-price-1.svg);">
+    <div class="container" style="margin-top:-140px!important">
+        <h1>Hareketler</h1>
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>Tarih</th>
+                    <th>İşlem Tipi</th>
+                    <th>Tutar</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+
+                    <tr>
+                        <td>@item.ActivityDate.ToString("dd-MMM-yyyy")</td>
+                        <td>@item.ActivityType</td>
+
+                        <td class="product-total">@item.Amount.ToString("C")</td>
+                      </tr>
+                }
+
+                <!-- Daha fazla ürün eklemek için benzer satırlar ekleyebilirsiniz -->
+            </tbody>
+        </table>
+
+        <div class="payment-button">
+            <button class="btn btn-success">Tüm Hareketler</button>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<CartLineViewModel>
+@{
+    ViewData["Title"] = "DeliveryDetail";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">  
+            <div class="table-responsive">
+               @*  <h3>@Model.FirstOrDefault().CustomerFullName</h3> *@
+                <div style="text-align:end; margin-right:18px">
+                    <a asp-action="Delivery" asp-controller="AdminProduct" class="btn btn-primary ">Geri</a>
+                </div>
+                <partial name="_DeliveryPartialView" model="@Model" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+        function deliveryto(id,cartId) {
+            $.ajax({
+                //type: 'GET',
+                url: '/AdminProduct/DeliveryUpdate/' + id + '?cartId=' + cartId,
+
+                success: function (result) {
+                    $("#Table").html(result);
+                    console.log("1111");
+
+                },
+                error: function (xhr, status, error) {
+
+                    console.log("2222");
+                    console.error(error);
+                }
+            });
+        };
+    </script>
+}

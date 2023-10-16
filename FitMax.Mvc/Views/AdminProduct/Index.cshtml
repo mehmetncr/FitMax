@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ProductViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Ürünler</h4>
+            <div>
+                <td><a asp-action="AddProduct" asp-controller="AdminProduct" class="btn btn-success btn-xl">Ürün Ekle</a> </td>
+            </div>
+
+            <div class="table-responsive">
+                <partial name="_AdminProductPartialView" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <script>
+
+
+        function deletep(id) {
+            $.ajax({
+                //type: 'GET',
+                url: '/AdminProduct/DeleteProduct/' + id,
+                success: function (result) {
+                    $("#products").html(result);
+
+                },
+                error: function (xhr, status, error) {
+
+                    console.error(error);
+                }
+            });
+        };
+
+
+
+
+    </script>
+
+
+}
+

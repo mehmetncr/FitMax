@@ -1,0 +1,48 @@
+﻿@model List<TrainerTotalBalanceViewModel>
+@{
+    ViewData["Title"] = "TotalBalance";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@if (Model.Count() == 0)
+{
+    <h2>Kayıt Bulunamadı</h2>
+}
+else
+{
+
+
+
+    <div class="col-lg-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">@Model.FirstOrDefault().TrainerName</h4>
+
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-center"> Yıl</th>
+                                <th class="text-center">Ay</th>
+                                <th class="text-center"> Toplam Kazanç </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                @foreach (var item in Model)
+                                {
+                                    <td class="text-center">@item.Year</td>
+                                    <td class="text-center">@item.Month</td>
+                                    <td class="text-center">@item.TotalPrice.ToString("C")</td>
+                                }
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+}

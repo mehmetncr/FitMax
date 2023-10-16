@@ -1,0 +1,96 @@
+﻿@model IEnumerable<PrivateLessonViewModel>
+@if (Model.Count()==0)
+{
+    <div style="text-align:center">
+        <h2>Henüz Özel Ders Yok</h2>
+    </div>
+}
+else
+{
+
+
+    <section class="s-training-schedule" style="background-image: url(/fitmax/ssets/img/bg-table-1.svg);margin-top:-300px">
+        <div class="container">
+            <h2 class="title-decor">Eğitmen <span>Takvimi</span></h2>
+            <p class="slogan">Eğitmenden istediğiniz boş günü için ders randevusu alabilirsiniz. Ders iptalleri için lütfen yönetimle iletişime geçiniz.</p>
+            <div class="training-schedule-cover">
+                <div style="text-align: center;">
+                    <h3 class="training-schedule-top ">@Model.FirstOrDefault().TrainerName</h3>
+                    <h3 class="training-schedule-top d-inline-block" style="font-size:13px">Günlük Ders Ücreti :  @Model.FirstOrDefault().TrainerPrice.ToString("C")</h3>
+                </div>
+                <div class="training-schedule-table">
+
+                    <table>
+                        <thead>
+                            <tr>
+
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                @{
+                                    int a = 0;
+                                }
+                                @foreach (var item in Model)
+                                {
+                                    a++;
+                                    if (a==8)
+                                    {
+                                        break;
+                                    }
+                                    <td>
+                                        @item.Date.ToString("dd-MM-yyyy")
+                                        @if (item.Lesson == "empty")
+                                        {
+
+                                            <a asp-action="BuyLesson" asp-controller="TrainerPage" asp-route-id="@item.TrainerId" asp-route-date="@item.Date.ToShortDateString()" class="btn">SEÇ</a>
+                                        }
+                                        else
+                                        {
+                                            <div class="name"><a class="btn">DOlU</a></div>
+                                        }
+
+
+                                    </td>
+
+                                }
+                            </tr>
+                            <tr>                              
+                                @foreach (var item in Model.Skip(7))
+                                {                                   
+                                    <td>
+                                        @item.Date.ToString("dd-MM-yyyy")
+                                        @if (item.Lesson == "empty")
+                                        {
+
+                                            <a asp-action="BuyLesson" asp-controller="TrainerPage" asp-route-id="@item.TrainerId" asp-route-date="@item.Date.ToShortDateString()" class="btn">SEÇ</a>
+                                        }
+                                        else
+                                        {
+                                            <div class="name"><a class="btn">DOlU</a></div>
+                                        }
+
+
+                                    </td>
+
+                                }
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </section>
+}

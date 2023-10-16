@@ -1,0 +1,60 @@
+﻿@model PackageViewModel
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <form asp-action="Details" asp-controller="AdminPackage" method="post" enctype="multipart/form-data" class="forms-sample">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input asp-for="Id" type="hidden" value="@Model.Id">
+     
+                    <div class="form-group">
+                        <label>Adı</label>
+                        <input asp-for="Name" type="text" class="form-control">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Açıklama 1</label>
+                        <input asp-for="Description" type="text" class="form-control">
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Açıklama 2</label>
+                        <input asp-for="Description2" type="text" class="form-control">
+                        <span asp-validation-for="Description2" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Açıklama 3</label>
+                        <input asp-for="Description3" type="text" class="form-control">
+                        <span asp-validation-for="Description3" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Fiyatı</label>
+                        <input asp-for="Price" type="text" class="form-control">
+                        <span asp-validation-for="Price" class="text-danger"></span>
+
+                    </div>  
+
+                    <button type="submit" class="btn btn-primary mr-2">Kaydet</button>
+                    <a href="/AdminPackage/Index" class="btn btn-dark">İptal</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+
+    }
+}
+
+

@@ -1,0 +1,57 @@
+﻿
+
+
+
+<header class="header">
+	<a href="#" class="nav-btn">
+		<span></span>
+		<span></span>
+		<span></span>
+	</a>
+    
+    <div class="header-menu">
+        <div class="container">
+            <div class="header-logo">
+                <a href="/Home/Index" class="logo"><img src="~/fitmax/assets/img/logo.svg" alt="logo"></a>
+            </div>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    
+                    <li><a href="/Home/Index">Anasayfa</a></li>
+                   
+                    
+                    <li><a href="/Products/Index">Ürünler</a></li>
+                    <li><a href="/Contact/Index">İLETİŞİM</a></li>
+                    @if (User.Identity!.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Admin"))
+                        {
+                            <li><a href="/AdminHome/Index"><i class="fa-solid fa-screwdriver-wrench"></i>&nbsp; Admin Panel</a></li>
+                        }else
+                        {
+                            <li><a asp-action="Index" asp-controller="Wallet"><i class="fa fa-credit-card" aria-hidden="true"></i>&nbsp;Cüzdanım</a></li>
+
+                            <li><a asp-controller="UserPage" asp-action="StudentOrTrainer"><i class="fa fa-user" aria-hidden="true"></i>&nbsp; @User.Identity.Name</a></li>
+                        }
+                     
+                       
+                        <li><a href="/Account/LogOut"><i class="fa-solid fa-right-from-bracket"></i>&nbsp;Çıkış</a></li>
+                        if (User.IsInRole("Personel"))
+                        {
+                            <li><a href="/AdminProduct/Delivery"><i class="fa-solid fa-box"></i>&nbsp;Teslimat</a></li>
+                        }
+                      
+                    }else
+                    {
+                        <li><a href="/Account/Login"><i class="fa fa-user" aria-hidden="true"></i>&nbsp; GİRİŞ</a></li>
+                        <li><a href="/Account/Register"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;Üyelik</a></li>
+                    }
+                   
+                   
+                    <li class="mx-5"><a href="/Cart/Index"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>&nbsp;Sepetİm&nbsp; <span style="color:#f23849"><vc:cart-count></vc:cart-count></span></a></li>
+
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>

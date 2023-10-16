@@ -1,0 +1,56 @@
+﻿@model List<UserViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@if (TempData["info"] != null)
+{
+
+    @TempData["info"]
+}
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Eğitmenler</h4>
+            <a asp-action="UpdateCalendar" asp-controller="Trainer" class="btn btn-success">Takvimi Güncelle</a>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th> Ad Soyad </th>
+
+                            <th> Görevi </th>
+                            <th> Ücreti </th>
+                            <th> Durumu </th>
+                            <th> İşlemler </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+
+                            <tr>
+
+                                <td> @item.FirstName @item.Lastname</td>
+                                <td>
+                                    @item.UserType
+                                </td>
+                                <td> @item.TrainerPrice.ToString("C") </td>
+                                <td> <a class="btn btn-outline-success">@item.Status</a> </td>
+                                <td> <a asp-action="Lessons" asp-controller="Trainer" asp-route-id="@item.Id" class="btn btn-success">Dersler</a> </td>
+                                <td> <a asp-action="LessonDetails" asp-controller="Trainer" asp-route-id="@item.Id" class="btn btn-primary">Ders Detayları</a> </td>
+                                <td> <a asp-action="UpdatePrice" asp-controller="Trainer" asp-route-id="@item.Id" class="btn btn-warning">Fiyat</a> </td>
+                                <td> <a asp-action="RemoveTrainer" asp-controller="Trainer" asp-route-id="@item.Id" class="btn btn-danger">Çıkar</a> </td>
+                                <td> <a asp-action="TotalBalance" asp-controller="Trainer" asp-route-id="@item.Id" class="btn btn-info">Kazanç</a> </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

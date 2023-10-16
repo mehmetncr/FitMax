@@ -1,0 +1,295 @@
+﻿@model UserViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<section class="s-news" style="margin:-130px">
+    <div class="container">
+        <div class="row">
+            <div class="col-6 col-lg-6 ">
+                <div class="post-item-cover">
+                    <div class="post-header">
+                        <div class="post-thumbnail">
+                            <img src="~/fitmax/assets/img/blog-1.jpg" alt="img" class="img-fluid rounded float-left" width="100px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Hidayet boy kilo ve paket güncelleme-->
+            <div class="col-6 col-lg-6 ">
+
+
+                <div class="row mb-3 justify-content-center">
+                    <h3 class="text-center">Paket Bilgilerim</h3>
+                </div>
+                @if (Model.Package == null)
+                {
+                    <h4>AKTİF BİR ÜYELİĞİNİZ BULUNMAMAKTADIR: PAKET ALMAK İÇİN TIKLAYINIZ</h4>
+                }
+                else
+                {
+                    <div class="row">
+                        <div class="container">
+
+                            <div class="row">
+                                <div class="col mb-3">
+                                    <label for="">Paket:</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" value="@ViewBag.package" readonly class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col mb-3">
+                                    <label for="">Başlangıç Tarihi</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" value="@Model.PackageStartDate" readonly class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col mb-3">
+                                    <label for="">Bitiş Tarihi</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" value="@Model.PackageEndDate" readonly class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+
+
+                <!--    Kullanıcı Boy ve Kilo Bilgisi      -->
+                <form method="post" asp-controller="UserPage" asp-action="UpdateUserInfo">
+                    <input type="hidden" asp-for="UserType" value=@Model.UserType />
+                    <input type="hidden" asp-for="Id" value=@Model.Id />
+                    <input asp-for="UserName" value="@User.Identity.Name" type="hidden" />
+                    <div class="row">
+                        <div class="container">
+                            <div class="row mb-3 justify-content-center">
+                                <h3 class="text-center">Fiziksel Özellikler</h3>
+                            </div>
+                            <div class="row">
+                                <div class="col mb-3">
+                                    <label for="">Boy Bilgisi:</label>
+                                </div>
+                                <div class="col">
+                                    <input asp-for=Height type="text" value="@Model.Height">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col mb-3">
+                                    <label for="">Kilo Bilgisi</label>
+                                </div>
+                                <div class="col">
+                                    <input asp-for="Weight" type="text" value="@Model.Weight">
+                                </div>
+                            </div>
+                            <div class="row mt-5 bg-light justify-content-center">
+                                <div>
+                                    <Button type="submit" class="btn">Boy ve Kilo Bilgilerinizi Güncelleyin.</Button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-7 col-lg-7 ">
+
+
+                    <div class="col-lg-12  ">
+                        <div class="">
+                            <div class="card-body">
+                                <div class="mb-2" style="text-align:center!important; background-color:gray">
+                                <h4 class="card-title">Teslim Edilmeyen Siparişler</h4>
+                                </div>
+                                <div class="table-responsive" style="overflow-y: auto; max-height: 300px;">
+                                    <table class="training-schedule-table">
+                                        <thead>
+
+                                            <tr>
+
+                                                <th> Sipariş Tarihi </th>
+
+                                                <th> Tutar </th>
+                                                <th> Detaylar </th>
+
+                                            </tr>
+                                        </thead>
+                                      
+                                        <tbody>
+
+                                            @foreach (var item in ViewBag.deliveryFalse)
+                                                {
+                                                    <tr>
+                                                        <td> @item.OrderDate </td>
+                                                        <td> @item.TotalPrice.ToString("C") </td>
+                                                        <td>
+                                                            @if (!item.Status)
+                                                            {
+                                                            <a class="btn btn-success" asp-controller="UserPage" asp-action="UserCartLines" asp-route-id="@item.Id">Detay</a>
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                
+                                            }
+                                         
+                                        </tbody>
+
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="">
+                            <div class="card-body">
+                                <div class="mb-2" style="text-align:center!important;background-color:gray">
+                                <h4 class="card-title">Teslim Edilen Siparişler</h4>
+                                </div>
+                                <div class="table-responsive" style="overflow-y: auto; max-height: 300px;">
+                                    <table class="training-schedule-table">
+                                        <thead>
+                                            <tr>
+
+
+                                                <th> Sipariş Tarihi </th>
+                                                <th> Teslim Tarihi </th>
+                                                <th> Tutar </th>
+                                                <th> Detaylar </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in ViewBag.deliveryTrue)
+                                            {
+
+                                                <tr>
+
+                                                    <td> @item.OrderDate </td>
+                                                    <td> @item.DeliveryDate </td>
+                                                    <td> @item.TotalPrice.ToString("C") </td>
+
+                                                    <td>
+
+                                                        <a class="btn btn-success" asp-controller="UserPage" asp-action="UserCartLines" asp-route-id="@item.Id">Detay</a>
+
+                                                    </td>
+
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-5 col-lg-5 ">
+                    <div class="row">
+                        <div class="col-lg-12 grid-margin stretch-card">
+                            <div class="">
+                                <div class="card-body">
+                                    <div class="mb-2" style="text-align:center!important;background-color:gray">
+                                    <h4 class="card-title">Gelecek Özel Dersler</h4>
+                                    </div>
+                                    <div class="table-responsive" style="overflow-y: auto; max-height: 300px;">
+                                        <table class="training-schedule-table">
+                                            <thead>
+                                                <tr>
+
+
+                                                    <th> Ders Tarihi </th>
+                                                    <th> Eğitmen </th>
+
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in ViewBag.lessonTrue)
+                                                {
+
+                                                    <tr>
+
+                                                        <td> @item.Date </td>
+                                                        <td> @item.TrainerName </td>
+
+
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!---->
+                        <div class="col-lg-12 grid-margin stretch-card">
+                            <div class="">
+                                <div class="card-body">
+                                    <div class="mb-2" style="text-align:center!important;background-color:gray">
+                                    <h4 class="card-title">Geçmiş Özel Dersler</h4>
+                                    </div>
+                                    <div class="table-responsive" style="overflow-y: auto; max-height: 300px;">
+                                        <table class="training-schedule-table">
+                                            <thead>
+                                                <tr>
+
+
+                                                    <th> Ders Tarihi </th>
+                                                    <th> Eğitmen </th>
+
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in ViewBag.lessonFalse)
+                                                {
+
+                                                    <tr>
+
+                                                        <td> @item.Date </td>
+                                                        <td> @item.TrainerName </td>
+
+
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+        <tr>
+            <td>
+
+                <a asp-controller="Account" asp-action="PasswordNewNormal" class="btn">Şifre Değiştir</a>
+            </td>
+        </tr>
+
+    </div>
+</section>
+<!--=================== S-NEWS END ===================-->
+

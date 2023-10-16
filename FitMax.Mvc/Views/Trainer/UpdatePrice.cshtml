@@ -1,0 +1,12 @@
+﻿@model int
+@{
+    ViewData["Title"] = "UpdatePrice";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Yeni Fiyat</h1>
+<form asp-action="UpdatePrice" asp-controller="Trainer" method="post">
+<input name="price"/>
+<input name="id" value="@Model" type="hidden"/>
+<button type="submit" class="btn btn-success">Kaydet</button>
+</form>

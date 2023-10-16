@@ -1,0 +1,106 @@
+﻿@model List<CartLineViewModel>
+@using FitMax.Entity.ViewModels
+
+<div class="container" id="Tablo">
+    @if (Model.Count() > 0)
+    {
+
+
+        <div class="row">
+
+            <div class="col-2 ">
+                <h1>Sepet</h1>
+            </div>
+            <div class="col-8"></div>
+            <div class="col-2 mt-4">
+                <input type="button" class="btn btn-danger mb-2" onclick="deletecart()" value="Sepeti Temizle" style="display:@(Model.Count()>0?"block":"none")" />
+            </div>
+        </div>
+        <table class="training-schedule-table">
+            <thead>
+                <tr>
+                    <th>Ürün Adı</th>
+                    <th>Azalt</th>
+                    <th>Adet</th>
+                    <th>Arttır</th>
+                    <th>Birim Fiyat</th>
+                    <th>Toplam</th>
+                    <th>İşlemler</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                @if (Model != null)
+                {
+                    decimal total = 0;
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>
+                                <a data-id="@item.ProductId" class="btn btn-outline-warning mx-1 btn-xs" href="" onclick="decrease(@item.ProductId);return false;">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-square mb-1" viewBox="0 0 16 16">
+                                        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                                        <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
+                                    </svg>
+
+
+                                </a>
+                            </td>
+                            <td>
+                                <p style="width:5px; display:inline-block"><strong>@item.Quantity</strong></p>
+                            </td>
+                            <td>
+                                <a data-id="@item.ProductId" class="btn btn-outline-success mx-1 btn-xs" href="" onclick="increase(@item.ProductId);return false;">
+
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square mb-1" viewBox="0 0 16 16">
+                                        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                    </svg>
+                                </a>
+                            </td>
+                            <td>@item.UnitPrice.ToString("C")</td>
+                            <td style="width:150px">@((item.UnitPrice * item.Quantity).ToString("C")) </td>
+                            <td style="width:5px!important">
+                                <a class="btn-sm btn-outline-danger " href="" onclick="deleteto(@item.ProductId);return false;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill mb-1" viewBox="0 0 16 16">
+                                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                    </svg>
+                                </a>
+                            </td>
+
+
+                        </tr>
+                        total = total + item.UnitPrice * item.Quantity;
+                    }
+
+                    <tr>
+                        <td colspan="4"></td> <!-- Boş hücreler ekleyin -->
+                        <td  style="text-align: center;">
+                            Sepet Toplam: 
+                    
+                        </td>
+                        <td>
+                            @total.ToString("C")
+                        <td>
+                            <a asp-action="Payment" asp-controller="Cart" class="btn btn-success">Tamamla</a>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+
+
+    }
+    else
+    {
+        <div style="text-align:center!important">
+            <img src="~/images/shopping-cart-20396.png" style="width:150px"/>
+            <h2>Henüz Burada Ürün Yok..</h2>
+        </div>
+    }
+</div>

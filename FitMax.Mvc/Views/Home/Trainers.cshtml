@@ -1,0 +1,48 @@
+﻿@model List<HomeTrainerViewModel>
+@{
+    ViewData["Title"] = "Trainers";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<section class="s-header-title" style="background-image: url(/fitmax/assets/img/bg-1-min.png);">
+    <div class="container">
+        <h1 class="title">EĞİTMENLERİMİZ</h1>
+
+    </div>
+</section>
+<section class="s-out-trainer " style="margin-top:-70px" >
+    <div class="container">
+      
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 out-trainer-col">
+                    <div class="out-trainer-item">
+                        <a asp-action="Index" asp-controller="TrainerPage" asp-route-id="@item.Id" class="out-trainer-img"><img src="@item.ImgUrl" alt="img"></a>
+                        <div class="out-trainer-info">
+                            <h3><a asp-action="Index" asp-controller="TrainerPage" asp-route-id="@item.Id">@item.Name</a></h3>
+
+                            <p>@item.Description</p>
+                            <ul class="social-list">
+                                <li>
+                                    <a target="_blank" href="@item.Facebook">
+                                        <i class="@((item.Facebook == null) ? "" : "fa fa-facebook")" aria-hidden="true"></i>
+
+                                    </a>
+                                </li>
+                                <li><a target="_blank" href="@item.Twitter"><i class="@((item.Twitter == null) ? "" : "fa fa-twitter")" aria-hidden="true"></i></a></li>
+                                <li><a target="_blank" href="@item.Youtube"><i class="@((item.Youtube == null) ? "" : "fa fa-youtube")" aria-hidden="true"></i></a></li>
+                                <li><a target="_blank" href="@item.Instagram"><i class="@((item.Instagram == null) ? "" : "fa fa-instagram")" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+  
+    </div>
+
+</section>
+
+

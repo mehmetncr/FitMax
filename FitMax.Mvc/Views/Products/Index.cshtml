@@ -1,0 +1,145 @@
+﻿@model List<ProductViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 ">
+            <br>
+            <h2>Arama ve Filtreleme</h2>
+            <!-- Arama ve filtreleme bileşenlerini ekleyin -->
+            <form id="filter-form">
+                <div class="form-group">
+
+                    <br>
+                    <br>     
+                    <input type="text" class="form-control" id="search" placeholder="Ürün adı">
+                </div>
+                <br>
+                <input type="button" class="btn mb-2" value="Spor Ekipmanları" href="" onclick="spor('Spor');return false;">
+
+                <input type="button" class="btn mb-5" value="Sporcu Besinleri" onclick="spor('Besin');return false;" />
+
+                <input type="button" class="btn mb-2" value="Tüm Ürünler" href="" onclick="spor('Tüm');return false;">
+
+            </form>
+            <br>
+        </div>
+        <div class="col-md-8">
+            <div style="text-align:center">
+                <h1 class="mb-5">Ürünler</h1>
+
+            </div>
+            <partial name="_ProductsPartialView" data="@Model" />
+
+
+            <br>
+
+        </div>
+    </div>
+</div>
+<br>
+<br>
+
+
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+
+        function addCart(id) {
+    
+            $.ajax({
+                // type: 'GET',  //default get olduğu için belirtmeden de çalışır
+                url: '/Cart/AddInCart/' + id,
+                success: function (result) {              
+              
+                    if (result != 5000) {
+                        $("#count").text(result);
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Sepete Eklendi',
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+                    } else 
+                    {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Yeterli Stok Yok',
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+                    }
+
+                },
+                error: function (xhr, status, error) {
+
+                    console.error(error);
+                }
+            });
+        };
+        function spor(filter) {
+           
+
+            $.ajax({
+                // type: 'GET',  //default get olduğu için belirtmeden de çalışır
+                url: '/Products/Filter/',
+                data: { filter: filter },
+                success: function (result) {
+                    $("#Products").html(result);
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        };
+        $(document).ready(function () {
+            // Input alanındaki her tuşa basışı dinle
+            $("#search").on("input", function () {
+                // Input alanındaki değeri al
+                var searchValue = $(this).val();
+
+                // Değerin uzunluğunu kontrol et (3 karakterden fazla ise)
+                if (searchValue.length >= 3) {
+                    // AJAX isteği gönder
+                    $.ajax({
+                        url: '/Products/Index',
+                        method: 'GET', // veya GET
+                        data: { search: searchValue },
+                        success: function (result) {
+                            $("#Products").html(result);
+                           
+                        },
+                        error: function (xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
+                } else {
+                    $.ajax({
+                        url: '/Products/Index',
+                        method: 'GET', // veya GET
+                        data: { search: 'Tüm' },
+                        success: function (result) {
+                            $("#Products").html(result);
+
+                        },
+                        error: function (xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
+                }
+            });
+        });
+
+
+      
+    </script>
+ }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="1920" height="902" viewBox="0 0 1920 902" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="1920" height="902">
+<rect width="1920" height="902" fill="#C4C4C4"/>
+</mask>
+<g mask="url(#mask0)">
+<path d="M1890 344C1890 365.61 1873.14 383 1852.5 383C1831.86 383 1815 365.61 1815 344C1815 322.39 1831.86 305 1852.5 305C1873.14 305 1890 322.39 1890 344Z" stroke="#FCBD56" stroke-width="4"/>
+<path d="M1217.45 873.583L1196.44 852.571L1225.14 844.881L1217.45 873.583Z" fill="#F23849"/>
+<path d="M1371.66 119L1363 134L1354.34 119L1371.66 119Z" stroke="#F23849" stroke-width="3"/>
+<circle cx="167.278" cy="484.7" r="37.9145" transform="rotate(-166.963 167.278 484.7)" stroke="#F23849" stroke-width="3"/>
+<circle r="13.7657" transform="matrix(-0.974224 -0.225582 -0.225582 0.974224 1747.28 714.7)" stroke="#F23849" stroke-width="3"/>
+<circle r="4.5" transform="matrix(-0.974224 -0.225582 -0.225582 0.974224 110.598 80.7655)" fill="#F23849"/>
+<path d="M509.868 770.26L543.965 780.166L518.337 804.742L509.868 770.26Z" stroke="#FCBD56" stroke-width="6"/>
+</g>
+</svg>

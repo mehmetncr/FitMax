@@ -1,0 +1,141 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Fitmax</title>
+    <!-- =================== META =================== -->
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="~/fitmax/assets/img/favicon.png">
+    <!-- =================== STYLE =================== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="stylesheet" href="~/fitmax/assets/css/slick.min.css">
+    <link rel="stylesheet" href="~/fitmax/assets/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="~/fitmax/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/fitmax/assets/css/style.css">
+    <link href="~/css/site.css" rel="stylesheet" />
+   <style>
+        body {
+            background-color: #222;
+            color: #fff;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .product-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+            .product-table th,
+            .product-table td {
+                border: 1px solid #444;
+                padding: 8px;
+                text-align: center;
+            }
+
+            .product-table th {
+                background-color: #333;
+                color: #fff;
+            }
+
+        .total {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        .payment-button {
+            margin-top: 20px;
+        }
+
+        /* Kaydırma çubuğu stilini özelleştir */
+        .table-responsive::-webkit-scrollbar {
+            width: 10px; /* Kaydırma çubuğu genişliği */
+        }
+
+        /* Kaydırma çubuğu başlığına stil ver */
+        .table-responsive::-webkit-scrollbar-thumb {
+            background-color: #888; /* Kaydırma çubuğu rengi */
+            border-radius: 5px; /* Kenar yuvarlatma */
+        }
+
+        /* Kaydırma çubuğu çevresinde bir gölge ekleyin */
+        .table-responsive {
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            max-height: 300px; /* Maksimum yükseklik */
+            overflow-y: scroll; /* Yatay kaydırma çubuğunu görünmez yapın */
+        }
+        /* Başlık (header) sabit kalsın */
+        thead {
+            position: sticky;
+            top: 0;
+            
+            z-index: 1; /* Diğer içeriğin üstünde olmasını sağlayın */
+        }
+
+     
+
+
+
+
+   </style>
+
+</head>
+
+<body id="home">
+    <!--================ PRELOADER ================-->
+    <div class="preloader-cover">
+        <div id="cube-loader">
+            <div class="caption">
+                <div class="cube-loader">
+                    <div class="cube loader-1"></div>
+                    <div class="cube loader-2"></div>
+                    <div class="cube loader-4"></div>
+                    <div class="cube loader-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--============== PRELOADER END ==============-->
+    <!-- ================= HEADER ================= -->
+   
+    <partial name="_HeaderPartialView" />
+    <!-- =============== HEADER END =============== -->
+
+    @RenderBody()
+    <!-- ================== FOOTER ================== -->
+    <!-- ================== FOOTER ================== -->
+    <partial name="_FooterPartialView" />
+    <!-- ================ FOOTER END ================ -->
+    <!--=================== TO TOP ===================-->
+    <a class="to-top" href="#home">
+        <i class="fa fa-chevron-up" aria-hidden="true"></i>
+    </a>
+    <!--================= TO TOP END =================-->
+    <!--=================== SCRIPT	===================-->
+
+    <script src="~/fitmax/assets/js/jquery-2.2.4.min.js"></script>
+    <script src="~/fitmax/assets/js/slick.min.js"></script>
+    <script src="~/fitmax/assets/js/rx-lazy.js"></script>
+    <script src="~/fitmax/assets/js/parallax.min.js"></script>
+    <script src="~/fitmax/assets/js/scripts.js"></script>
+    <script src="~/js/site.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+
+</html>
+
+

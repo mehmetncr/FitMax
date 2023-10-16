@@ -1,0 +1,56 @@
+﻿@model PaymentViewModel
+@{
+    ViewData["Title"] = "Paymant";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+<div class="container">
+    <div style="display: flex; justify-content: space-between;">
+        <h1>Alışverişi Tamamla</h1>
+        <div>
+            <h2>@Model.Balance.ToString("C") </h2>
+            <a asp-action="AddMoney" asp-controller="Wallet" asp-route-id="@Model.WalletId" class="btn">Yükle</a>
+        </div>
+    </div>
+    <form asp-action="Payment" asp-controller="Cart" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input asp-for="UserId" value="@Model.UserId" type="hidden" />
+        <input asp-for="WalletId" value="@Model.WalletId" type="hidden" />
+        <input asp-for="Price" value="@Model.Price" type="hidden" />
+        <input asp-for="Balance" value="@Model.Balance" type="hidden" />
+        <input asp-for="PackageId" value="@Model.PackageId" type="hidden" />
+        <input asp-for="Name" value="@Model.Name" type="hidden" />
+        <input asp-for="TrainerId" value="@Model.TrainerId" type="hidden" />
+        <input asp-for="Type" value="@Model.Type" type="hidden" />
+        <input asp-for="WeekNo" value="@Model.WeekNo" type="hidden" />
+        <input asp-for="Day" value="@Model.Day" type="hidden" />
+
+
+
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>Ürün</th>
+
+                    <th>Toplam</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.Name</td>
+                    <td>@Model.Price.ToString("C")</td>
+
+                </tr>
+
+
+            </tbody>
+        </table>
+
+        <div class="btn-form-cover mt-5">
+
+            <button type="submit" class="btn">Öde</button>
+        </div>
+    </form>
+</div>
+

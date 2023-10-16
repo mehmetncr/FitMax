@@ -1,0 +1,72 @@
+﻿@model IEnumerable<CartLineViewModel>
+@{
+    ViewData["Title"] = "UserCartLines";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<div class="container" id="Tablo">
+    <div class="row">
+
+        <div class="col-2 ">
+            <h1>Sepet</h1>
+        </div>
+        <div class="col-8"></div>
+        <div class="col-2 mt-4">
+        </div>
+    </div>
+    <table class="training-schedule-table">
+        <thead>
+            <tr>
+                <th>Ürün Adı</th>
+                <th>Adet</th>
+                <th>Birim Fiyat</th>
+                <th>Toplam</th>
+                <th>Spariş Tarihi</th>
+                <th>Teslim Tarihi</th>
+                
+
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @if (Model != null)
+            {
+                decimal total = 0;
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Product.Name</td>                
+
+                        <td>
+                            <p style="width:5px; display:inline-block"><strong>@item.Quantity</strong></p>
+                        </td>
+
+                        <td>@item.UnitPrice.ToString("C")</td>
+                        <td style="width:150px">@((item.UnitPrice * item.Quantity).ToString("C")) </td>
+                        <td>@item.OrderDate</td>
+                        <td>@item.DeliveryDate</td>
+
+
+                    </tr>
+                    total = total + item.UnitPrice * item.Quantity;
+                }
+
+                <tr>
+                    <td colspan="4"></td> <!-- Boş hücreler ekleyin -->
+                    <td style="text-align: center;">
+                        Sepet Toplam:
+
+                    </td>
+                    <td>
+                        @total.ToString("C")
+
+                </tr>
+
+            }
+        </tbody>
+    </table>
+
+
+
+
+</div>

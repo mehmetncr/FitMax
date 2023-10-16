@@ -1,0 +1,51 @@
+﻿@model IEnumerable<CartLineViewModel>
+
+
+
+<table class="table table-striped" id="Table">
+    <thead>
+        <tr>
+
+            <th> Urun </th>
+            <th> Adet </th>
+            <th> Sipariş Tarihi </th>
+            <th> Teslim Tarihi </th>
+            <th> Durumu </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int totatlQuantity = 0;
+            decimal totalPrice = 0;
+        }
+        @foreach (var Model in Model)
+        {
+
+
+            <tr>
+                <td> @Model.Product.Name </td>
+                <td> @Model.Quantity </td>
+                <td> @Model.OrderDate </td>
+                <td> @Model.DeliveryDate </td>
+                <td> <a class="btn btn-outline-@(Model.Status==true?"success":"danger")">@(Model.Status == true ? "Teslim Edildi" : "Teslim Edlimedi")</a> </td>
+                <td>
+                    @if (Model.Status == false)
+                    {
+                        <a class="btn btn-success" onclick="deliveryto('@Model.Id','@Model.CartId')">Teslim Et</a>
+                    }
+                </td>
+                @{
+                    totatlQuantity += Model.Quantity;
+                    totalPrice += Model.TotalPrice;
+                }
+
+            </tr>
+        }
+        <h3 style="color:gray">Sepet Toplamı : @totalPrice.ToString("C")</h3>
+        <h5 style="color:gray">Toplam Ürün Adeti : @totatlQuantity</h5>
+    </tbody>
+
+
+</table>
+
+

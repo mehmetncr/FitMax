@@ -1,0 +1,45 @@
+﻿@model WalletViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+
+
+<section class="s-header-title" style="background-image: url(/fitmax/assets/img/bg-1-min.png);">
+    <div class="container">
+        <h1 class="title">FitMax Cüzdanım <i class="fa-regular fa-credit-card"></i></h1>
+
+    </div>
+</section>
+
+
+<section class="s-club-cards club-cards-lite club-cards-fitness " style="margin-top:-110px!important;">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-6 club-card-col">
+                <div class="club-card-item" style="background-image: url(/fitmax/assets/img/bg-price-1.svg);">
+                    <div class="price-cover">
+                        <h3 style="margin-bottom:50px">Toplam Bakİye</h3>
+                        <div class="price">
+                       
+                            @Model.Balance.ToString("C")
+
+
+                        </div>
+                    </div>
+                    <a asp-action="AddMoney" asp-controller="Wallet" asp-route-id="@Model.Id" class="btn mt-5">Para Yükle <i class="fa-solid fa-plus"></i></a>
+                </div>
+            </div>
+            <div class="col-md-6 club-card-col">
+                @await Component.InvokeAsync("WalletDetails", new { id = Model.Id })
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+

@@ -1,0 +1,36 @@
+﻿<table class="table table-striped" id="products">
+    <thead>
+        <tr>
+            <th> Adı </th>
+
+            <th> Alış Fiyatı </th>
+            <th> Satış Fiyatı </th>
+            <th> Stok </th>
+            <th> Durumu </th>
+            <th> Detaylar </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+
+                <td>
+                    @item.Purchaseprice
+                </td>
+                <td>
+                    @item.Price
+                </td>
+                <td>@item.Stock </td>
+                <td><a class="btn btn-outline-@(item.Status == true ? "success" : "danger")">@(item.Status == true ? "Satışta" : "Satışa Kapalı")</a></td>
+                <td><a asp-action="Details" asp-controller="AdminProduct" class="btn btn-primary" asp-route-id="@item.Id">Detaylar</a> </td>
+                <td><a class="btn btn-outline-danger" onclick="deletep('@item.Id')">Ürün Sil</a> </td>
+            </tr>
+        }
+      
+    </tbody>
+</table>
+

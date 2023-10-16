@@ -1,0 +1,60 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<section class="s-contacts" style="background-image: url(assets/img/bg-contacts.svg);margin-top:-100px!important">
+	<div class="container">
+		<h2 class="title-decor">Giriş <span>Yap</span></h2>
+		<div class="row">
+			<div class="col-md-3 col-lg-3">
+			</div>
+			<div class="col-md-6 col-lg-6">
+				<form asp-action="Login" asp-controller="Account" method="post">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<input asp-for="ReturnUrl" value="@Model.ReturnUrl" type="hidden"/>
+					<ul class="form-cover">
+						<li class="inp-name">
+							<label>Kullanıcı Adı</label>
+							<input asp-for="UserName" type="text" >
+							<span asp-validation-for="UserName" class="text-danger"></span>
+						</li>
+						<li class="inp-email">
+							<label>Şifre</label>
+							<input asp-for="Password" type="password">
+							<span asp-validation-for="Password" class="text-danger"></span>
+						</li>
+
+					</ul>
+					<div class="checkbox-wrap row">
+						<div class="checkbox-cover col-9">
+							<input asp-for="RememberMe" type="checkbox">							
+							<p>Beni Hatırla</p>
+							<span asp-validation-for="RememberMe" class="text-danger"></span>
+
+						</div>
+
+						<div style="text-align:right" !important>
+							<a asp-action="PasswordReset" asp-controller="Account">Şifremi Unuttum</a>
+							
+						</div>
+
+					</div>
+
+					<div class="btn-form-cover">
+
+						<button id="#submit" type="submit" class="btn">Giriş</button>
+					</div>
+				</form>
+				<div id="message"></div>
+			</div>
+		</div>
+	</div>
+</section>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}
