@@ -3,35 +3,19 @@
 
 TR->
 
-Asp .Net Core 7 ile geliştirdiğim spor salonu otomasyon projesinde;
-- Kullanıcılar kayıt olabilir ve sisteme giriş yaparak kullanmaya başlayabilirler.
-- Giriş yapan kullanıcılar spor salonundan teslim almak üzere online alışveriş yapabilirler.
-- Salon üyeliği için üyelik paketi satın alabilirler.
-- Salonda bulunan eğitmenlerden 2 haftalık zaman içinde özel ders alabilirler.
-- Profil sayfasında satın aldıkları ürünleri ve eğitimlerini inceleyebilirler.
-- Eğitmenler ders satın alan kullanıcıları görebilir ve ders takibi yapabilirler.
-Admin Paneli;
-- Online satın alınan ürünlerin teslimatı takip edilebilir.
-- Eğitmenlerin dersleri takip edileblir.
-- Eğitmenlerin ücretleri ve haftalık takvimler auarlanabir.
-- Kullanıcılar yönetilebilir.
-- Online satılan ürünler ekleme silme ve güncellemeleri yapılabilir
+Bu projede kullanıcılar, sisteme kayıt olup giriş yaparak spor salonunun sunduğu hizmetleri kullanmaya başlayabiliyorlar. Giriş yapan kullanıcılar, online alışveriş üzerinden spor salonundan ürün satın alabilir ve aynı zamanda üyelik paketi satın alarak salonun avantajlarından faydalanabilirler.
+Projede ayrıca, kullanıcılar eğitmenlerden 2 haftalık zaman dilimi içinde özel ders alabilir ve profil sayfalarında satın aldıkları ürünleri ve eğitimleri takip edebilirler. Eğitmenler ise ders satın alan kullanıcıları görebilir ve ders takibi yapabilirler.
+Admin paneli üzerinden ise online satın alınan ürünlerin teslimatı takip edilebilir, eğitmenlerin dersleri izlenebilir, eğitmen ücretleri ve haftalık takvimleri düzenlenebilir, kullanıcılar yönetilebilir ve online satılan ürünlerle ilgili ekleme, silme ve güncelleme işlemleri yapılabilmektedir.
+Bu proje, spor salonu işletmecilerine, eğitmenlere ve kullanıcılara geniş bir yelpazede hizmet sunma amacını taşıyor ve benzeri uygulamalara kıyasla daha kullanıcı dostu bir deneyim sunmayı hedefliyor.
+
 
 EN->
 
-In the gym automation project I developed with Asp .Net Core 7;
-- Users can register and start using the system by logging in.
-- Logged in users can shop online to take delivery from the gym.
-- They can buy a membership package for gym membership.
-- They can take private lessons from the trainers in the hall within 2 weeks.
-- They can review the products and trainings they have purchased on their profile page.
-- Instructors can see the users who have purchased lessons and follow the lessons.
-Admin Panel;
-- Delivery of products purchased online can be tracked.
-- Instructors' lessons can be followed.
-- Instructors' fees and weekly calendars can be adjusted.
-- Users can be managed.
-- Products sold online can be added, deleted and updated
+
+In this project, users can access gym services by registering and logging into the system. Once logged in, users have the option to make online purchases of gym products and take advantage of gym facilities by acquiring a membership package.
+Additionally, users can schedule private lessons with trainers for a 2-week period and track their purchased products and training sessions on their profile pages. Instructors, on the other hand, can view users who have purchased lessons and monitor their progress.
+The admin panel provides functionalities such as tracking the delivery of online-purchased products, monitoring instructors' lessons, editing instructor fees and weekly calendars, managing users, and performing operations related to the addition, deletion, and update of products sold online.
+This project aims to offer a comprehensive set of services for gym operators, trainers, and users, providing a user-friendly experience compared to similar applications.
 
 ## Kullanılan Teknolojiler / Used technologies
 
